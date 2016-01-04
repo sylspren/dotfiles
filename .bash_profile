@@ -122,8 +122,8 @@ _git_completion()
 complete -o bashdefault -o default -F _git_completion git
 
 # Ruby
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+# export PATH="$HOME/.rbenv/bin:$PATH"
+# eval "$(rbenv init -)"
 
 # Node
 export NVM_DIR=~/.nvm
