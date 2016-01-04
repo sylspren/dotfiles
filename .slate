@@ -1,0 +1,40 @@
+config defaultToCurrentScreen true
+#config nudgePercentOf screenSize
+#config resizePercentOf screenSize
+
+# Screen Corners/Sides
+alias full move 0;0+21 screenSizeX;screenSizeY
+# alias top move 0;0+21 screenSizeX;screenSizeY/2
+alias bottom move 0;screenSizeY*1/5 screenSizeX;screenSizeY*4/5+21
+alias left move 0;0+21 screenSizeX/2;screenSizeY
+alias right move screenSizeX/2;0+21 screenSizeX/2;screenSizeY
+alias bottomLeft move 0;screenSizeY/2+21 screenSizeX/2;screenSizeY/2
+alias bottomRight move screenSizeX/2;screenSizeY/2+21 screenSizeX/2;screenSizeY/2
+alias topLeft move 0;0+21 screenSizeX/2;screenSizeY/2
+alias topRight move screenSizeX/2;0+21 screenSizeX/2;screenSizeY/2
+
+bind j:cmd;alt ${left}
+bind o:cmd;alt ${full}
+bind k:cmd;alt ${right}
+
+bind pad2:cmd;alt ${bottom}
+bind pad7:cmd;alt ${topLeft}
+bind pad9:cmd;alt ${topRight}
+bind pad1:cmd;alt ${bottomLeft}
+bind pad3:cmd;alt ${bottomRight}
+
+
+# Resize Bindings
+bind right:cmd;alt       resize +10% +0
+bind left:cmd;alt        resize -10% +0
+bind up:cmd;alt          resize +0   -10%
+bind down:cmd;alt        resize +0   +10%
+bind right:ctrl;alt  resize -10% +0 bottom-right
+bind left:ctrl;alt   resize +10% +0 bottom-right
+bind up:ctrl;alt     resize +0   +10% bottom-right
+bind down:ctrl;alt   resize +0   -10% bottom-right
+
+# Grid
+bind g:cmd grid padding:5 0:6,6
+gridRoundedCornerSize 2
+gridCellRoundedCornerSize 2
