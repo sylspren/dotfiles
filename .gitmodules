@@ -1,0 +1,30 @@
+[submodule "vim/bundle/fugitive"]
+	path = vim/bundle/fugitive
+	url = http://github.com/tpope/vim-fugitive.git
+[submodule "vim/bundle/ag"]
+	path = vim/bundle/ag
+	url = http://github.com/rking/ag.vim
+[submodule "vim/bundle/bufexplorer"]
+	path = vim/bundle/bufexplorer
+	url = https://github.com/jlanzarotta/bufexplorer
+[submodule "vim/bundle/ctrlp.vim"]
+	path = vim/bundle/ctrlp.vim
+	url = https://github.com/ctrlpvim/ctrlp.vim
+[submodule "vim/bundle/endwise"]
+	path = vim/bundle/endwise
+	url = https://github.com/tpope/vim-endwise
+[submodule "vim/bundle/markdown"]
+	path = vim/bundle/markdown
+	url = https://github.com/tpope/vim-markdown
+[submodule "vim/bundle/nerdcommenter"]
+	path = vim/bundle/nerdcommenter
+	url = https://github.com/scrooloose/nerdcommenter
+[submodule "vim/bundle/nerdtree"]
+	path = vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree
+[submodule "vim/bundle/surround"]
+	path = vim/bundle/surround
+	url = https://github.com/tpope/vim-surround
+[submodule "vim/bundle/vim-coffee-script"]
+	path = vim/bundle/vim-coffee-script
+	url = https://github.com/kchmck/vim-coffee-script
