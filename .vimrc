@@ -70,6 +70,9 @@ nnoremap <leader>g :GundoToggle<CR>
 nnoremap <leader>f :let @* = expand("%")<CR>
 
 " NERDTree settings
+let g:NERDTreeDirArrows = 1
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
 let g:NERDTreeChDirMode=2
 let g:NERDChristmasTree=1
 nmap <leader>t :NERDTreeToggle<CR>
