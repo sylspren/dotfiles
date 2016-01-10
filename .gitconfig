@@ -1,0 +1,42 @@
+[push]
+	default = current
+[user]
+  name = Lei Huang
+  email = lei@goodeggs.com
+[core]
+	editor = /usr/bin/vim
+  excludesfile = /Users/lei/.gitignore_global
+	pager = less -r
+[alias]
+	st = status
+	di = diff
+	co = checkout
+	ci = commit
+  br = branch
+  io = !git fetch && git log --left-right @{upstream}...
+	sta = stash
+	llog = log --date=local
+	flog = log --pretty=fuller --decorate
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	lol = log --graph --decorate --oneline
+	lola = log --graph --decorate --oneline --all
+	blog = log origin/master... --left-right
+	ds = diff --staged
+	fixup = commit --fixup
+	squash = commit --squash
+	unstage = reset HEAD
+	rum = rebase master@{u}
+[color]
+	branch = auto
+	diff = auto
+	interactive = auto
+	status = auto
+	ui = auto
+[branch]
+	autosetupmerge = true
+[rebase]
+	autosquash = true
+[push]
+	default = simple
+[credential]
+	helper = osxkeychain
