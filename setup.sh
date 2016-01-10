@@ -25,16 +25,25 @@ brew install macvim
 brew cask install slate
 
 ## download and setup dotfiles
-mkdir -p personal
+if ! [ -d ~/personal ]; then
+  mkdir ~/personal
+fi
 
 if ! [ -d ~/personal/dotfiles ]; then
   git clone git@github.com:sylspren/dotfiles.git ~/personal/dotfiles
+
   ln -s ~/personal/dotfiles/.bash_profile ~/.bash_profile
   ln -s ~/personal/dotfiles/bash_plugins ~/.bash_plugins
+
   ln -s ~/personal/dotfiles/.vimrc ~/.vimrc
   ln -s ~/personal/dotfiles/vim ~/.vim
+
   ln -s ~/personal/dotfiles/.slate ~/.slate
+
   ln -s ~/personal/dotfiles/.ackrc ~/.acrkc
+
+  ln -s ~/personal/dotfiles/.gitignore_global ~/.gitignore_global
+  ln -s ~/personal/dotfiles/.gitconfig ~/.gitconfig
 else
   echo 'dotfiles already setup, skipping.'
 fi
