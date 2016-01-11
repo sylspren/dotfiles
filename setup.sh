@@ -40,7 +40,7 @@ if ! [ -d ~/personal/dotfiles ]; then
 
   ln -s ~/personal/dotfiles/.slate ~/.slate
 
-  ln -s ~/personal/dotfiles/.ackrc ~/.acrkc
+  ln -s ~/personal/dotfiles/.ackrc ~/.ackrc
 
   ln -s ~/personal/dotfiles/.gitignore_global ~/.gitignore_global
   ln -s ~/personal/dotfiles/.gitconfig ~/.gitconfig
