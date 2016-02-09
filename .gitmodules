@@ -37,3 +37,12 @@
 [submodule "vim/bundle/vim-cjsx"]
 	path = vim/bundle/vim-cjsx
 	url = https://github.com/mtscout6/vim-cjsx.git
+[submodule "vim/vim-markdown-preview"]
+	path = vim/vim-markdown-preview
+	url = https://github.com/JamshedVesuna/vim-markdown-preview
+[submodule "vim/plugin/vim-markdown-preview"]
+	path = vim/plugin/vim-markdown-preview
+	url = https://github.com/JamshedVesuna/vim-markdown-preview
+[submodule "vim/bundle/emmet-vim"]
+	path = vim/bundle/emmet-vim
+	url = https://github.com/mattn/emmet-vim.git

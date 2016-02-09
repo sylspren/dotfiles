@@ -200,8 +200,15 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=8
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 
 let g:ctrlp_custom_ignore= '\.(git|hg|svn|js|map)$'
+let g:ctrlp_max_files=0
+let g:ctrlp_max_depth=10
+let g:ctrlp_clear_cache_on_exit=0
 
 " tabs
 nmap tp :tabp<CR>
 nmap tn :tabn<CR>
 " cmap te :tabedit<CR>
+
+" markdown preview
+let vim_markdown_preview_hotkey='<C-m>'
+let vim_markdown_preview_toggle=3
