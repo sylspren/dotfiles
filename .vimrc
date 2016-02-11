@@ -212,3 +212,18 @@ nmap tn :tabn<CR>
 " markdown preview
 let vim_markdown_preview_hotkey='<C-m>'
 let vim_markdown_preview_toggle=3
+
+" jxc
+let g:user_emmet_leader_key='<C-l>'
+autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exec = 'eslint_d'
