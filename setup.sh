@@ -3,8 +3,17 @@
 set -e
 input="/dev/tty"
 
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH # homebrew
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
-# TODO: brew & cask
+# install homebrew
+echo "Checking homebrew..."
+if ! which -s brew; then
+  # Homebrew will make sure xcode tools are installed
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/HomeBrew/install/master/install)" < $input
+fi
+brew doctor
+mkdir -p ~/Library/LaunchAgents
 
 ## Remap capslock
 brew cask install seil
