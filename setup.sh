@@ -3,8 +3,38 @@
 set -e
 input="/dev/tty"
 
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH # homebrew
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
-# TODO: brew & cask
+# install homebrew
+echo "Checking homebrew..."
+if ! which -s brew; then
+  # Homebrew will make sure xcode tools are installed
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/HomeBrew/install/master/install)" < $input
+fi
+brew doctor
+mkdir -p ~/Library/LaunchAgents
+
+## Git
+brew install git
+
+## SSH
+if ! [ -f ~/.ssh/id_rsa.pub ]; then
+  read -p "Create SSH Key? (y/n) " setupSSH
+  if [ "$setupSSH" = "y" ]; then
+    # create SSH key
+    ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
+
+    echo "Created SSH key on ~/.ssh/ , please copy the key content of ~/.ssh/id_rsa.pub and add to Github"
+    echo "Follow these instructions: https://help.github.com/articles/generating-ssh-keys#step-3-add-your-ssh-key-to-github"
+    read -p "Hit ENTER to continue when you are done"
+  else
+    echo "Don't forget to copy existing ssh keys to ~/.ssh!"
+    read -p "Copy your existing ssh key to ~/.ssh. Ensure it's added to github. Click ENTER to continue"
+  fi
+else
+  read -p "Found SSH key already exists, ensure this key was added to Github. Click ENTER to continue"
+fi
 
 ## Remap capslock
 brew cask install seil
@@ -17,8 +47,6 @@ brew cask install iterm2
 
 ## mvim
 brew install macvim
-
-# TODO: setup git & ssh
 
 ## slate
 # TODO: run slate and setup permissions
