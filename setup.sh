@@ -60,6 +60,8 @@ fi
 if ! [ -d ~/personal/dotfiles ]; then
   git clone git@github.com:sylspren/dotfiles.git ~/personal/dotfiles
 
+  # TODO: submodules init & update
+
   ln -s ~/personal/dotfiles/.bash_profile ~/.bash_profile
   ln -s ~/personal/dotfiles/bash_plugins ~/.bash_plugins
 
@@ -99,6 +101,18 @@ else
   echo 'Rbenv already setup, skipping.'
 fi
 
+## PIP
+if ! which -s brew; then
+  read -p "Setup pip? (y/n) " setupPip
+  if [ "$setupPip" = "y" ]; then
+    echo "Installing pip..."
+    curl https://bootstrap.pypa.io/get-pip.py > get-pip.py
+    sudo python get-pip.py
+  fi
+else
+  echo 'PIP already setup skipping.'
+fi
+
 # TODO(optional): node
 
 ## All the other stuff
@@ -108,5 +122,6 @@ brew cask install keepassx
 brew install ack
 brew install the_silver_searcher
 brew cask install spotify
+brew cask install evernote
 
 # TODO: dropbox
