@@ -12,8 +12,6 @@ if ! which -s brew; then
   # Homebrew will make sure xcode tools are installed
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/HomeBrew/install/master/install)" < $input
 fi
-brew doctor
-mkdir -p ~/Library/LaunchAgents
 
 ## Git
 brew install git
@@ -37,8 +35,9 @@ else
 fi
 
 ## Remap capslock
-brew cask install seil
-# TODO: open seil and set capslock to 53 (escape)
+brew cask install karabiner
+# TODO: setup karabiner profile
+# open seil and set capslock to 53 (escape)
 # TODO: switch alt and command on external
 # TODO: disable capslock on built-in
 
@@ -60,7 +59,7 @@ fi
 if ! [ -d ~/personal/dotfiles ]; then
   git clone git@github.com:sylspren/dotfiles.git ~/personal/dotfiles
 
-  # TODO: submodules init & update
+  cd ~/personal/dotfiles && git submodule init && git submodule update
 
   ln -s ~/personal/dotfiles/.bash_profile ~/.bash_profile
   ln -s ~/personal/dotfiles/bash_plugins ~/.bash_plugins
@@ -102,7 +101,7 @@ else
 fi
 
 ## PIP
-if ! which -s brew; then
+if ! which -s pip; then
   read -p "Setup pip? (y/n) " setupPip
   if [ "$setupPip" = "y" ]; then
     echo "Installing pip..."
