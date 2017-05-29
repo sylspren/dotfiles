@@ -199,7 +199,7 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=8
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 
-let g:ctrlp_custom_ignore= '\.(git|hg|svn|js|map)$'
+let g:ctrlp_custom_ignore= 'node_modules\|\.(git|hg|svn|js|map)$'
 let g:ctrlp_max_files=0
 let g:ctrlp_max_depth=10
 let g:ctrlp_clear_cache_on_exit=0
@@ -211,9 +211,17 @@ nmap tn :tabn<CR>
 
 " markdown preview
 let vim_markdown_preview_hotkey='<C-m>'
-let vim_markdown_preview_toggle=3
+let vim_markdown_preview_toggle=0
+let vim_markdown_preview_github=1
+" let vim_markdown_preview_browser='Google Chrome'
 
-" jxc
+
+" stylus
+" Stylus filetype detection (not working in plugin :neutral_face: )
+autocmd BufNewFile,BufReadPost *.styl set filetype=stylus    " When creating, opening or reopening a .styl file, trigger style syntax highlighting
+autocmd BufNewFile,BufReadPost *.stylus set filetype=stylus  " When creating, opening or reopening a .styl file, trigger style syntax highlighting
+
+" jsx
 let g:user_emmet_leader_key='<C-l>'
 autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx
 
