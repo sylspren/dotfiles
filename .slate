@@ -16,6 +16,7 @@ alias topRight move screenSizeX/2;0+21 screenSizeX/2;screenSizeY/2
 bind j:cmd;alt ${left}
 bind o:cmd;alt ${full}
 bind k:cmd;alt ${right}
+bind ,:cmd;alt ${bottom}
 
 bind pad2:cmd;alt ${bottom}
 bind pad7:cmd;alt ${topLeft}
