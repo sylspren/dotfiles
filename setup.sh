@@ -35,17 +35,14 @@ else
 fi
 
 ## Remap capslock
-brew cask install karabiner
-# TODO: setup karabiner profile
-# open seil and set capslock to 53 (escape)
-# TODO: switch alt and command on external
-# TODO: disable capslock on built-in
+brew cask install karabiner-elements
 
 ## iterm2
 brew cask install iterm2
 
 ## mvim
 brew install macvim
+brew install tmux
 
 ## slate
 brew cask install slate
@@ -68,6 +65,11 @@ if ! [ -d ~/personal/dotfiles ]; then
 
   ln -s ~/personal/dotfiles/.vimrc ~/.vimrc
   ln -s ~/personal/dotfiles/vim ~/.vim
+
+  ln -s ~/personal/dotfiles/.tmux.conf ~/.tmux.conf
+
+  mkdir -p ~/.config/karabiner
+  ln -s ~/personal/dotfiles/karabiner.json ~/.config/karabiner/karabiner.json
 
   ln -s ~/personal/dotfiles/.slate ~/.slate
 
