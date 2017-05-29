@@ -48,8 +48,10 @@ brew cask install iterm2
 brew install macvim
 
 ## slate
-# TODO: run slate and setup permissions
 brew cask install slate
+echo "Go give slate and karabiner access to Accessibliity. Then add them to startup items"
+open "x-apple.systempreferences:com.apple.preference.security"
+read -p "Done?"
 
 ## download and setup dotfiles
 if ! [ -d ~/personal ]; then
