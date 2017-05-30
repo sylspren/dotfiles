@@ -42,7 +42,10 @@ brew cask install iterm2
 
 ## mvim
 brew install macvim
+
+## tmux & tmux clipboard fixer
 brew install tmux
+brew install reattach-to-user-namespace
 
 ## slate
 brew cask install slate

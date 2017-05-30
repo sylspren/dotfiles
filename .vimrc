@@ -53,6 +53,8 @@ if has("mouse_sgr")
 else
    set ttymouse=xterm2
 end
+
+" share clipboard
 set clipboard=unnamed
 
 set guifont=Monaco:h13
