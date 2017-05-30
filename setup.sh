@@ -101,7 +101,7 @@ if ! [ -d ~/.rbenv ]; then
     echo "Installing ruby..."
     export PATH="$HOME/.rbenv/bin:$PATH"
     eval "$(rbenv init -)"
-    rbenv install 2.1.3
+    rbenv install 2.3.1
   fi
 else
   echo 'Rbenv already setup, skipping.'
