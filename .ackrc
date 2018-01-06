@@ -9,6 +9,7 @@
 # less -r
 
 --ignore-dir=.idea/
+--ignore-dir=coverage/
 --ignore-dir=node_modules/
 --ignore-dir=ruby_gems/
 --ignore-dir=spec/replay-fixtures/api.tumblr.com/

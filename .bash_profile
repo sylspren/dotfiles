@@ -151,3 +151,7 @@ alias gL='git log --format="%n%Cblue--- %Cred%h %Cgreen(%ci) %Cred%an %Cblue---%
 
 # goodeggs
 alias cdg='cd ~/Projects/garbanzo'
+eval "$(pyenv init -)"
+eval "$(direnv hook bash)"
+
+source ~/.profile

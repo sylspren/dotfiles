@@ -237,3 +237,10 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exec = 'eslint_d'
+
+" nerdCommenter
+let NERDSpaceDelims=1
+
+" set directory and backup directory for .sw files
+:set directory=$HOME/.vim/swapfiles/
+:set backupdir=$HOME/.vim/swapfiles/
