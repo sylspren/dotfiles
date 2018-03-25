@@ -125,12 +125,12 @@ complete -o bashdefault -o default -F _git_completion git
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
-# Node
-export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
-
-# After nvm sets up the path
-export PATH="./node_modules/.bin:$PATH" # locally installed node binaries
+# # Node
+# export NVM_DIR=~/.nvm
+# source $(brew --prefix nvm)/nvm.sh
+#
+# # After nvm sets up the path
+# export PATH="./node_modules/.bin:$PATH" # locally installed node binaries
 
 # keyboard hack
 # sudo kextload /Applications/Seil.app/Contents/Library/Seil.10.10.signed.kext/
@@ -149,9 +149,5 @@ alias gll='git log --graph --stat -C -w'
 # This one is a higher density version of git whatchanged:
 alias gL='git log --format="%n%Cblue--- %Cred%h %Cgreen(%ci) %Cred%an %Cblue---%n  %s | %b" --name-status'
 
-# goodeggs
-alias cdg='cd ~/Projects/garbanzo'
-eval "$(pyenv init -)"
-eval "$(direnv hook bash)"
-
-source ~/.profile
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
