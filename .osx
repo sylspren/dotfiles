@@ -92,6 +92,9 @@ defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
 # Dock, Dashboard, and hot corners                                            #
 ###############################################################################
 
+# Wipe all apps from dock to start
+defaults write com.apple.dock persistent-apps -array
+
 # Enable highlight hover effect for the grid view of a stack (Dock)
 # defaults write com.apple.dock mouse-over-hilite-stack -bool true
 

@@ -129,8 +129,6 @@ brew install ack
 brew install the_silver_searcher
 brew cask install spotify
 brew cask install evernote
+brew cask install dropbox
 
-# TODO: dropbox
-
-# Wipe all apps from dock to start
-defaults write com.apple.dock persistent-apps -array
+source ~/personal/dotfiles/.osx
