@@ -121,10 +121,6 @@ _git_completion()
 }
 complete -o bashdefault -o default -F _git_completion git
 
-# Ruby
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-
 # # Node
 # export NVM_DIR=~/.nvm
 # source $(brew --prefix nvm)/nvm.sh
@@ -148,6 +144,3 @@ alias bi='bundle install'
 alias gll='git log --graph --stat -C -w'
 # This one is a higher density version of git whatchanged:
 alias gL='git log --format="%n%Cblue--- %Cred%h %Cgreen(%ci) %Cred%an %Cblue---%n  %s | %b" --name-status'
-
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"

@@ -34,8 +34,8 @@ else
   read -p "Found SSH key already exists, ensure this key was added to Github. Click ENTER to continue"
 fi
 
-## Remap capslock
-brew cask install karabiner-elements
+## Remap capslock to ctrl or escape
+brew cask install karabiner
 
 ## iterm2
 brew cask install iterm2
