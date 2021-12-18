@@ -10,7 +10,7 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 echo "Checking homebrew..."
 if ! which -s brew; then
   # Homebrew will make sure xcode tools are installed
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/HomeBrew/install/master/install)" < $input
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 ## Git
@@ -34,22 +34,15 @@ else
   read -p "Found SSH key already exists, ensure this key was added to Github. Click ENTER to continue"
 fi
 
-## Remap capslock to ctrl or escape
-brew cask install karabiner
-
 ## iterm2
-brew cask install iterm2
+brew install iterm2
 
 ## mvim
 brew install macvim
 
-## tmux & tmux clipboard fixer
-brew install tmux
-brew install reattach-to-user-namespace
-
 ## slate
-brew cask install slate
-echo "Go give slate and karabiner access to Accessibliity. Then add them to startup items"
+brew install slate
+echo "Go give slate access to Accessibliity. Then add them to login items"
 open "x-apple.systempreferences:com.apple.preference.security"
 read -p "Done?"
 
@@ -122,13 +115,13 @@ fi
 # TODO(optional): node
 
 ## All the other stuff
-brew cask install jumpcut
-brew cask install firefox
-brew cask install keepassx
+brew install jumpcut
+brew install firefox
+brew install keepassx
 brew install ack
 brew install the_silver_searcher
-brew cask install spotify
-brew cask install evernote
-brew cask install dropbox
+brew install spotify
+brew install evernote
+brew install dropbox
 
 source ~/personal/dotfiles/.osx
