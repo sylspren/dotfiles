@@ -47,12 +47,36 @@ fi
 DOTFILES_DIR=~/personal/dotfiles
 
 ## Symlink dotfiles
-ln -sf $DOTFILES_DIR/.zshrc ~/.zshrc
-ln -sf $DOTFILES_DIR/.zprofile ~/.zprofile
-ln -sf $DOTFILES_DIR/.vimrc ~/.vimrc
-ln -sf $DOTFILES_DIR/.tmux.conf ~/.tmux.conf
-ln -sf $DOTFILES_DIR/.gitconfig ~/.gitconfig
-ln -sf $DOTFILES_DIR/.gitignore_global ~/.gitignore_global
+symlink_dotfile() {
+  local source=$1
+  local target=$2
+
+  # If target already points to the right place, skip
+  if [ -L "$target" ] && [ "$(readlink "$target")" = "$source" ]; then
+    echo "Already linked: $target"
+    return
+  fi
+
+  # If target exists (file, directory, or wrong symlink), ask first
+  if [ -e "$target" ] || [ -L "$target" ]; then
+    read -p "$target already exists. Overwrite? (y/n) " overwrite
+    if [ "$overwrite" != "y" ]; then
+      echo "Skipping $target"
+      return
+    fi
+    rm -f "$target"
+  fi
+
+  ln -s "$source" "$target"
+  echo "Linked: $target -> $source"
+}
+
+symlink_dotfile "$DOTFILES_DIR/.zshrc" ~/.zshrc
+symlink_dotfile "$DOTFILES_DIR/.zprofile" ~/.zprofile
+symlink_dotfile "$DOTFILES_DIR/.vimrc" ~/.vimrc
+symlink_dotfile "$DOTFILES_DIR/.tmux.conf" ~/.tmux.conf
+symlink_dotfile "$DOTFILES_DIR/.gitconfig" ~/.gitconfig
+symlink_dotfile "$DOTFILES_DIR/.gitignore_global" ~/.gitignore_global
 
 ## Install vim-plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
