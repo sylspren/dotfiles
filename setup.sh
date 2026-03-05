@@ -85,6 +85,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 ## Terminal and editor
 brew install --cask iterm2
 brew install macvim
+brew install tmux
 
 ## All the other stuff
 brew install --cask firefox
