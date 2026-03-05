@@ -185,5 +185,9 @@ let g:ale_sign_error = '>'
 let g:ale_sign_warning = '-'
 
 " Swap and backup directory
+" Create swap/backup directory if it doesn't exist
+if !isdirectory($HOME . "/.vim/swapfiles")
+    call mkdir($HOME . "/.vim/swapfiles", "p", 0700)
+endif
 set directory=$HOME/.vim/swapfiles/
 set backupdir=$HOME/.vim/swapfiles/
