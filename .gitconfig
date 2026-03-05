@@ -1,11 +1,9 @@
-[push]
-	default = current
 [user]
   name = Lei Huang
-  email = lei@goodeggs.com
+  email = lhuang09@gmail.com
 [core]
-	editor = /usr/bin/vim
-  excludesfile = /Users/lei/.gitignore_global
+	editor = vim
+  excludesfile = ~/.gitignore_global
 	pager = less -r
 [alias]
 	st = status

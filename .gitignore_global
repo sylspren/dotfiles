@@ -20,9 +20,3 @@ tags
 # Vim
 *.swp
 *.swo
-
-# nodemon
-.nodemonignore
-
-# rbenv
-.ruby-version

@@ -1,27 +1,37 @@
-" This is my .vimrc...I use gvim on linux, macvim on Mac OS. 7.3 required.
-" Note that there's no particular ordering here (except pathogen stuff comes first).
+" vim-plug plugin manager (auto-install if missing)
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-" Use Vim settings, rather then Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
+call plug#begin('~/.vim/plugged')
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-markdown'
+Plug 'preservim/nerdtree'
+Plug 'preservim/nerdcommenter'
+Plug 'mattn/emmet-vim'
+Plug 'pangloss/vim-javascript'
+Plug 'mbbill/undotree'
+Plug 'dense-analysis/ale'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+call plug#end()
+
 set nocompatible
-
-"Pathogen == eadier dealing with plugins
-filetype off
-execute pathogen#infect()
-"call pathogen#helptags()
-"call pathogen#runtime_append_all_bundles()
-filetype plugin indent on
-
 syntax on
 filetype plugin indent on
 
-" Text-wrapping stuff. (Also check out my cursorcolumn setting in .gvimrc.)
-set textwidth=110 " 80-width lines is for 1995
+" Text-wrapping stuff.
+set textwidth=110
 let &wrapmargin= &textwidth
-set formatoptions=croql " Now it shouldn't hard-wrap long lines as you're typing (annoying), but you can gq
-                        " as expected.
-set hidden "This allows vim to put buffers in the bg without saving, and then allows undoes when you fg them again.
-set history=1000 "Longer history
+set formatoptions=croql
+
+set hidden
+set history=1000
 set number
 set hlsearch
 set autoindent
@@ -29,32 +39,27 @@ set smartindent
 set expandtab
 set wildmenu
 set wildmode=list:longest
-set scrolloff=3 " This keeps three lines of context when scrolling
+set scrolloff=3
 set title
-set expandtab
 set smarttab
 set ts=2 sw=2 et
-"set sw=2
-"set sts=2
 set laststatus=2
 set statusline=%<%F%h%m%r%h%w%y\ %{&ff}\ %{strftime(\"%c\",getftime(expand(\"%:p\")))}%=\ lin:%l\,%L\ col:%c%V\ pos:%o\ ascii:%b\ %P
 set ignorecase
 set smartcase
-"set undofile
 set backspace=indent,eol,start
 set linespace=3
 set showcmd
-
 set incsearch
 set mouse=a
-"allow mouseclick on rhs of widescreen (past column 223)
+
 if has("mouse_sgr")
     set ttymouse=sgr
 else
    set ttymouse=xterm2
 end
 
-" share clipboard
+" Share clipboard
 set clipboard=unnamed
 
 set guifont=Monaco:h13
@@ -65,10 +70,10 @@ let mapleader = ","
 map <F6> :b#<CR>
 map <C-n> :noh<CR>
 
-" Gundo settings
-nnoremap <leader>g :GundoToggle<CR>
+" Undotree (replaces Gundo)
+nnoremap <leader>g :UndotreeToggle<CR>
 
-" Copy current filename to system clipboard ---- {{{3
+" Copy current filename to system clipboard
 nnoremap <leader>f :let @* = expand("%")<CR>
 
 " NERDTree settings
@@ -79,17 +84,15 @@ let g:NERDTreeChDirMode=2
 let g:NERDChristmasTree=1
 nmap <leader>t :NERDTreeToggle<CR>
 
-" Stupid NERDCommenter warning
+" NERDCommenter
 let NERDShutUp=1
+let NERDSpaceDelims=1
 
 " Make it easier to move around through blocks of text:
 noremap <C-J> gj
 noremap <C-k> gk
 noremap U 30k
 noremap D 30j
-
-" Ack >> grep
-nnoremap <leader>a :Ack
 
 " Audio bell == annoying
 set vb t_vb=
@@ -106,23 +109,11 @@ autocmd BufWritePre * :%s/\s\+$//e
 " A command to delete all trailing whitespace from a file.
 command DeleteTrailingWhitespace %s:\(\S*\)\s\+$:\1:
 
-" For some reason I accidentally hit this shortcut all the time...let's disable it. (I usually don't look at
-" man pages from within vim anyway.)
-:map K <Nop>
-
-" Preview the current markdown file:
-:map <leader>m :%w ! markdown_doctor \| bcat<CR><CR>
+" Disable K (man page lookup) — too easy to hit accidentally
+map K <Nop>
 
 " Close a buffer without messing with the windows (vim-bclose)
 nmap <leader>q <Plug>Kwbd
-
-" Macvim default clipboard interaction is bullshit
-set clipboard=unnamed
-
-" TODO: move all the language-specific settings to ftplugins
-
-" Nice ruby settings
-let ruby_space_settings = 1
 
 " Go specific settings
 augroup golang
@@ -136,111 +127,63 @@ augroup markdown
   au FileType markdown set comments=b:*,b:-,b:+,n:>h
 augroup END
 
+" Git blame for current line
 function! GitDiffForLine()
   execute "!git blame " . expand("%") . " -L " . line(".") . "," . line(".") .  "| cut -d' ' -f 1 | xargs git show"
 endfunction
-
 map <F1> :call GitDiffForLine()
-
-function ToggleNERDTree()
-  execute ":NERDTreeToggle"
-endfunction
-
-command -nargs=0 ToggleNERDTree :call ToggleNERDTree()
-
-function CoffeeCompile()
-  execute ":CoffeeCompile"
-endfunction
-
-map <C-c>c :call CoffeeCompile()<CR>
 
 " Smart tab complete
 function! Smart_TabComplete()
-  let line = getline('.')                         " current line
-
-  let substr = strpart(line, -1, col('.'))      " from the start of the current
-                                                  " line to one character right
-                                                  " of the cursor
-  let substr = matchstr(substr, "[^ \t]*$")       " word till cursor
-  if (strlen(substr)==0)                          " nothing to match on empty string
+  let line = getline('.')
+  let substr = strpart(line, -1, col('.'))
+  let substr = matchstr(substr, "[^ \t]*$")
+  if (strlen(substr)==0)
     return "\<tab>"
   endif
-  let has_period = match(substr, '\.') != -1      " position of period, if any
-  let has_slash = match(substr, '\/') != -1       " position of slash, if any
+  let has_period = match(substr, '\.') != -1
+  let has_slash = match(substr, '\/') != -1
   if (!has_period && !has_slash)
-    return "\<C-X>\<C-P>"                         " existing text matching
+    return "\<C-X>\<C-P>"
   elseif ( has_slash )
-    return "\<C-X>\<C-F>"                         " file matching
+    return "\<C-X>\<C-F>"
   else
-    return "\<C-X>\<C-O>"                         " plugin matching
+    return "\<C-X>\<C-O>"
   endif
 endfunction
-
 inoremap <tab> <c-r>=Smart_TabComplete()<CR>
 
-" Highlight long lines
-
-autocmd FileType ruby let w:m2=matchadd('ErrorMsg', '\%>110v.\+', -1)
-autocmd FileType eruby let w:m2=matchadd('ErrorMsg', '\%>110v.\+', -1)
-autocmd FileType scala let w:m2=matchadd('ErrorMsg', '\%>110v.\+', -1)
+" Highlight long lines in Go
 autocmd FileType golang let w:m2=matchadd('ErrorMsg', '\%>110v.\+', -1)
 
-" this will reselect and re-yank any text that is pasted in visual mode.
-" no more copying pasted over text into buffer
+" Reselect and re-yank text pasted in visual mode
 xnoremap p pgvy
 
 " Indent Guides
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_guide_size=1
 let g:indent_guides_start_level=2
-
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=7
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=8
 
-" Ctrlp
+" fzf (replaces CtrlP)
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+nnoremap <C-p> :Files<CR>
+nnoremap <leader>a :Rg<space>
 
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
-
-let g:ctrlp_custom_ignore= 'node_modules\|\.(git|hg|svn|js|map)$'
-let g:ctrlp_max_files=0
-let g:ctrlp_max_depth=10
-let g:ctrlp_clear_cache_on_exit=0
-
-" tabs
+" Tabs
 nmap tp :tabp<CR>
 nmap tn :tabn<CR>
-" cmap te :tabedit<CR>
 
-" markdown preview
-let vim_markdown_preview_hotkey='<C-m>'
-let vim_markdown_preview_toggle=0
-let vim_markdown_preview_github=1
-" let vim_markdown_preview_browser='Google Chrome'
-
-
-" stylus
-" Stylus filetype detection (not working in plugin :neutral_face: )
-autocmd BufNewFile,BufReadPost *.styl set filetype=stylus    " When creating, opening or reopening a .styl file, trigger style syntax highlighting
-autocmd BufNewFile,BufReadPost *.stylus set filetype=stylus  " When creating, opening or reopening a .styl file, trigger style syntax highlighting
-
-" jsx
+" JSX
 let g:user_emmet_leader_key='<C-l>'
-autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" ALE (async linting, replaces Syntastic)
+let g:ale_linters = {'javascript': ['eslint']}
+let g:ale_fix_on_save = 0
+let g:ale_sign_error = '>'
+let g:ale_sign_warning = '-'
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_exec = 'eslint_d'
-
-" nerdCommenter
-let NERDSpaceDelims=1
-
-" set directory and backup directory for .sw files
-:set directory=$HOME/.vim/swapfiles/
-:set backupdir=$HOME/.vim/swapfiles/
+" Swap and backup directory
+set directory=$HOME/.vim/swapfiles/
+set backupdir=$HOME/.vim/swapfiles/

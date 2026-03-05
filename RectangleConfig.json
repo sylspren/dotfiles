@@ -1,0 +1,18 @@
+{
+  "allowAnyShortcut": true,
+  "alternateDefaultShortcuts": true,
+  "launchOnLogin": true,
+  "subsequentExecutionMode": 1,
+  "leftHalf": { "keyCode": 38, "modifierFlags": 1572864 },
+  "rightHalf": { "keyCode": 40, "modifierFlags": 1572864 },
+  "maximize": { "keyCode": 31, "modifierFlags": 1572864 },
+  "nextDisplay": { "keyCode": 124, "modifierFlags": 1572864 },
+  "previousDisplay": { "keyCode": 123, "modifierFlags": 1572864 },
+  "bottomHalf": {},
+  "topHalf": {},
+  "topLeft": {},
+  "topRight": {},
+  "bottomLeft": {},
+  "bottomRight": {},
+  "maximizeHeight": {}
+}
