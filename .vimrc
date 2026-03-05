@@ -11,7 +11,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-markdown'
-Plug 'preservim/nerdtree'
 Plug 'preservim/nerdcommenter'
 Plug 'mattn/emmet-vim'
 Plug 'pangloss/vim-javascript'
@@ -76,13 +75,14 @@ nnoremap <leader>g :UndotreeToggle<CR>
 " Copy current filename to system clipboard
 nnoremap <leader>f :let @* = expand("%")<CR>
 
-" NERDTree settings
-let g:NERDTreeDirArrows = 1
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
-let g:NERDTreeChDirMode=2
-let g:NERDChristmasTree=1
-nmap <leader>t :NERDTreeToggle<CR>
+" netrw settings (built-in file explorer)
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
+nmap <leader>t :Lexplore<CR>
+autocmd FileType netrw nmap <buffer> o <CR>
 
 " NERDCommenter
 let NERDShutUp=1
